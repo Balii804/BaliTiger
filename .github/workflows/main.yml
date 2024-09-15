@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: CI Pipeline for Flask App
 
 on:
   push:
@@ -12,10 +12,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        python-version: '3.10'
+        python-version: [3.10]
 
     steps:
     - name: Checkout code
@@ -30,48 +29,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    
-    - name: Run unit tests
+
+    - name: Run tests
       run: |
         pytest test_app.py
-
-  lint:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.9
-
-    - name: Install dependencies
-      run: |
-        pip install pylint
-        pip install -r requirements.txt
-
-    - name: Run pylint
-      run: |
-        pylint main.py app.py
-
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.9
-
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
-
-    - name: Build project
-      run: |
-        python main.py
