@@ -10,10 +10,10 @@ X_std = np.load('model_std.npy')
 
 def predict_price(area, basement, garage):
     """Predict house price based on input features."""
-    X = np.array([area, basement, garage])
-    X_normalized = (X - X_mean) / X_std
-    X_normalized = np.hstack(([1], X_normalized))
-    price = X_normalized.dot(theta)
+    temp = np.array([area, basement, garage])
+    temp_normalized = (temp - X_mean) / X_std
+    temp_normalized = np.hstack(([1], temp_normalized))
+    price = temp_normalized.dot(theta)
     return price
 
 @app.route('/predict', methods=['POST'])
