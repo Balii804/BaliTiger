@@ -26,12 +26,13 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
-         
+    
+    - name: Run main.py
+      run: |
+        python main.py 
 
     - name: Run tests
       run: |
         pytest -v
 
-    - name: Run main.py
-      run: |
-        python main.py   
+      
