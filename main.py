@@ -56,8 +56,8 @@ if __name__ == "__main__":
     # Create the dataset
     data, target = create_dataset()
     # Compute normalization parameters
-    temp_mean = np.mean(data, atempis=0)
-    temp_std = np.std(data, atempis=0)
+    temp_mean = np.mean(data, axis=0)
+    temp_std = np.std(data, axis=0)
     # Preprocess the data
     temp = preprocess(data, temp_mean, temp_std)
     
