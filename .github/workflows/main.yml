@@ -33,7 +33,7 @@ jobs:
     
     - name: Run unit tests
       run: |
-        pytest test.py
+        pytest test_app.py
 
   lint:
     runs-on: ubuntu-latest
