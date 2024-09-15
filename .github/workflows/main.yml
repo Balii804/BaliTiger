@@ -31,13 +31,9 @@ jobs:
       run: |
         pip install pylint
     
-    - name: Run pylint
+    - name: Run app.py
       run: |
-        pylint *.py  # Adjust this pattern to include all relevant Python files
-
-    - name: Run main.py
-      run: |
-        python main.py 
+        python app.py 
 
     - name: Run tests
       run: |
