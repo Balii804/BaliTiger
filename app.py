@@ -8,17 +8,17 @@ theta = np.load('model_weights.npy')
 X_mean = np.load('model_mean.npy')
 X_std = np.load('model_std.npy')
 
-# Prediction function
 def predict_price(area, basement, garage):
+    """Predict house price based on input features."""
     X = np.array([area, basement, garage])
     X_normalized = (X - X_mean) / X_std
     X_normalized = np.hstack(([1], X_normalized))
     price = X_normalized.dot(theta)
     return price
 
-# Define a prediction API endpoint
 @app.route('/predict', methods=['POST'])
 def predict():
+    """API endpoint for predicting house price."""
     data = request.json
     try:
         area = float(data['area'])
@@ -30,9 +30,9 @@ def predict():
     price = predict_price(area, basement, garage)
     return jsonify({'predicted_price': price})
 
-# Serve the homepage
 @app.route('/')
 def home():
+    """Serve the homepage."""
     return render_template('index.html')
 
 if __name__ == '__main__':
