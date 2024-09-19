@@ -7,15 +7,15 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY . /app
 
-# Install any needed packages specified in requirements.txt
+# Install any necessary dependencies
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # Make port 5000 available to the world outside this container
 EXPOSE 5000
 
-# Define environment variable
-ENV FLASK_ENV=development
+# Define environment variable for production
+ENV FLASK_ENV=production
 
-# Run the Flask app
-CMD ["python", "app.py"]
+# Run app.py when the container launches
+CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
